@@ -401,4 +401,38 @@ class ExampleCollection
       });
     }
 
+    //Tinker \App\ExampleCollection::mapWithKeys()
+    public static function mapWithKeys()
+    {
+      //option 1
+      // return collect(value: [
+      //   'value1' => 'first',
+      //   'value2' => 'second',
+      // ])->mapWithKeys(callback: function($item, $key){
+      //   return [$item => $key];
+      // });
+
+      //option 2
+      // return collect(value: [
+      //   'value1' => 'first',
+      //   'value2' => 'second',
+      // ])->mapWithKeys(callback: function($item, $key){
+      //   if($key == 'value2'){
+      //     return [];
+      //   }
+      //   return [$item => $key];
+      // });
+
+      //option 3
+      return collect(value: [
+        'value1' => 'first',
+        'value2' => 'second',
+      ])->mapWithKeys(callback: function($item, $key){
+        return [
+          $key => $item,
+          $key . '_upper' => strtoupper(string: $item),
+        ];
+      });
+    }
+
 }
