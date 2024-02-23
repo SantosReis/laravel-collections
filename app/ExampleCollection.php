@@ -74,6 +74,38 @@ class ExampleCollection
     });
   }
 
+  //min()
+  //Tinker \App\ExampleCollection::min()
+  public static function min()
+  {
+    //option 1
+    // $data = [10000, 20000, 30000];
+    // return collect(value: $data)->min();
+
+    //option 2
+    // $data = [
+    //   ['price' => 15000],
+    //   ['price' => 20000],
+    //   ['price' => 10000],
+    // ];
+    // return collect(value: $data)->min(callback: 'price');
+
+
+    //option 3
+    $data = [
+      ['price' => 15000, 'tax' => 500, 'active' => true],
+      ['price' => 20000, 'tax' => 700, 'active' => false],
+      ['price' => 10000, 'tax' => 900, 'active' => true],
+    ];
+
+    return collect(value: $data)->min(callback: function($value){
+      if(!$value['active']) {
+        return null;
+      }
+      return $value['price'] + $value['tax'];
+    });
+  }
+
   //median()
   //Tinker \App\ExampleCollection::median()
   public static function median()
