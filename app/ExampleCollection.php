@@ -329,130 +329,153 @@ class ExampleCollection
     });
   }
 
-    /**
-     * The tap method passes the collection to the given callback,
-     * allowing you to "tap" into the collection at a specific point
-     * and do something with the items while not affecting the collection itself.
-     * The collection is then returned by the tap method:
-     */
-    //Tinker \App\ExampleCollection::tap()
-    public static function tap()
-    {
-      //option 1
-      // return collect(value: [1, 2, 3])
-      //   ->reverse()
-      //   ->tap(callback: function ($collection) {
-      //     $collection->each(function($value){
-      //       dump(var: 'In Tap' . $value);
-      //     });
-      //   })
-      //   ->first();
-
-        //option 2
-        return collect(value: [1, 2, 3])
-        ->reverse()
-        ->tap(callback: function ($collection) {
-          $collection->reverse()->each(function($value){
-            dump(var: 'In Tap' . $value);
-          });
-        })
-        ->first();
-    }
-
-    /**
-     * 
-     * The map method iterates through the collection and passes 
-     * each value to the given callback. The callback is free to 
-     * modify the item and return it, thus forming a new 
-     * collection of modified items
-     */
-    //map() does not change key values
-    //does not modify original array
-    //Tinker \App\ExampleCollection::map()
-    public static function map()
-    {
-      //option 1
-      // return collect(value: [1, 2, 3, 4])
-      //   ->map(callback: function($item) {
-      //     return $item * 10;
-      //   });
-
-      //option 2 (remain orignal value)
-      // $data = collect(value: [1, 2, 3, 4]);
-      // $newCollection = $data->map(callback: function($item) {
-      //     return $item * 10;
-      //   });
-      // // return $data;
-      // return $newCollection;
-
-      //option 3
-      // return collect(value: [1, 2, 3, 4])
-      //   ->map(callback: function($item, $key) {
-      //     return $item * $key;
-      //   });
-
-      //option 4
-      return collect(value: [
-        'value1' => 'first',
-        'value2' => 'second',
-      ])->map(callback: function ($item, $key) {
-        // return $item . ' ' . $key;
-         return null;
-      });
-    }
-
-    //Tinker \App\ExampleCollection::mapWithKeys()
-    public static function mapWithKeys()
-    {
-      //option 1
-      // return collect(value: [
-      //   'value1' => 'first',
-      //   'value2' => 'second',
-      // ])->mapWithKeys(callback: function($item, $key){
-      //   return [$item => $key];
-      // });
+  /**
+   * The tap method passes the collection to the given callback,
+   * allowing you to "tap" into the collection at a specific point
+   * and do something with the items while not affecting the collection itself.
+   * The collection is then returned by the tap method:
+   */
+  //Tinker \App\ExampleCollection::tap()
+  public static function tap()
+  {
+    //option 1
+    // return collect(value: [1, 2, 3])
+    //   ->reverse()
+    //   ->tap(callback: function ($collection) {
+    //     $collection->each(function($value){
+    //       dump(var: 'In Tap' . $value);
+    //     });
+    //   })
+    //   ->first();
 
       //option 2
-      // return collect(value: [
-      //   'value1' => 'first',
-      //   'value2' => 'second',
-      // ])->mapWithKeys(callback: function($item, $key){
-      //   if($key == 'value2'){
-      //     return [];
-      //   }
-      //   return [$item => $key];
-      // });
-
-      //option 3
-      return collect(value: [
-        'value1' => 'first',
-        'value2' => 'second',
-      ])->mapWithKeys(callback: function($item, $key){
-        return [
-          $key => $item,
-          $key . '_upper' => strtoupper(string: $item),
-        ];
-      });
-    }
-
-    //Tinker \App\ExampleCollection::mapWithKeys()
-    public static function mapInto()
-    {
-      $data = collect(value: [1, 2, 3, 4]);
-      //option 1
-      // return $data->mapInto(class: Converter::class)
-      //   ->map(callback: function($item){
-      //     return $item->toCentimeters();
-      //   });
-      //option 2
-      $newCollection = $data->mapInto(class: Converter::class)
-        ->map(callback: function($item){
-          return $item->toCentimeters();
+      return collect(value: [1, 2, 3])
+      ->reverse()
+      ->tap(callback: function ($collection) {
+        $collection->reverse()->each(function($value){
+          dump(var: 'In Tap' . $value);
         });
-      return $newCollection;
-    }
+      })
+      ->first();
+  }
 
+  /**
+   * 
+   * The map method iterates through the collection and passes 
+   * each value to the given callback. The callback is free to 
+   * modify the item and return it, thus forming a new 
+   * collection of modified items
+   */
+  //map() does not change key values
+  //does not modify original array
+  //Tinker \App\ExampleCollection::map()
+  public static function map()
+  {
+    //option 1
+    // return collect(value: [1, 2, 3, 4])
+    //   ->map(callback: function($item) {
+    //     return $item * 10;
+    //   });
+
+    //option 2 (remain orignal value)
+    // $data = collect(value: [1, 2, 3, 4]);
+    // $newCollection = $data->map(callback: function($item) {
+    //     return $item * 10;
+    //   });
+    // // return $data;
+    // return $newCollection;
+
+    //option 3
+    // return collect(value: [1, 2, 3, 4])
+    //   ->map(callback: function($item, $key) {
+    //     return $item * $key;
+    //   });
+
+    //option 4
+    return collect(value: [
+      'value1' => 'first',
+      'value2' => 'second',
+    ])->map(callback: function ($item, $key) {
+      // return $item . ' ' . $key;
+        return null;
+    });
+  }
+
+  //Tinker \App\ExampleCollection::mapWithKeys()
+  public static function mapWithKeys()
+  {
+    //option 1
+    // return collect(value: [
+    //   'value1' => 'first',
+    //   'value2' => 'second',
+    // ])->mapWithKeys(callback: function($item, $key){
+    //   return [$item => $key];
+    // });
+
+    //option 2
+    // return collect(value: [
+    //   'value1' => 'first',
+    //   'value2' => 'second',
+    // ])->mapWithKeys(callback: function($item, $key){
+    //   if($key == 'value2'){
+    //     return [];
+    //   }
+    //   return [$item => $key];
+    // });
+
+    //option 3
+    return collect(value: [
+      'value1' => 'first',
+      'value2' => 'second',
+    ])->mapWithKeys(callback: function($item, $key){
+      return [
+        $key => $item,
+        $key . '_upper' => strtoupper(string: $item),
+      ];
+    });
+  }
+  
+
+  //Tinker \App\ExampleCollection::mapWithKeys()
+  public static function mapInto()
+  {
+    $data = collect(value: [1, 2, 3, 4]);
+    //option 1
+    // return $data->mapInto(class: Converter::class)
+    //   ->map(callback: function($item){
+    //     return $item->toCentimeters();
+    //   });
+    //option 2
+    $newCollection = $data->mapInto(class: Converter::class)
+      ->map(callback: function($item){
+        return $item->toCentimeters();
+      });
+    return $newCollection;
+  }
+
+
+
+  //Tinker \App\ExampleCollection::mapSpread()
+  public static function mapSpread()
+  {
+    //option 1
+    // $collection = collect(value: [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    // return $collection->chunk(size: 2)
+    //   ->mapSpread(callback: function ($a, $b){
+    //     return $a*$b;
+    //   });
+
+    //option 2
+    $collection = collect(value: [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    return $collection->chunk(size: 3)
+      ->mapSpread(callback: function ($a, $b, $c){
+        return [$a*$b => $c];
+      });
+
+  }
+  
 }
+
 
 class Converter
 {
