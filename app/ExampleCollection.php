@@ -274,7 +274,8 @@ class ExampleCollection
     return $collection->diffKeys(items: [30 => 'pears', 20 => 'bananas']);
   }
 
-  public static function diffAssocUsing()
+  //Tinker \App\ExampleCollection::diffUsing()
+  public static function diffUsing()
   {
     //option 1: diffUsing
     // $collection = collect(value: [10, 25, 50]);
@@ -327,5 +328,35 @@ class ExampleCollection
       return ($code === $b) ? 0 : -1;
     });
   }
+
+    /**
+     * The tap method passes the collection to the given callback,
+     * allowing you to "tap" into the collection at a specific point
+     * and do something with the items while not affecting the collection itself.
+     * The collection is then returned by the tap method:
+     */
+    //Tinker \App\ExampleCollection::tap()
+    public static function tap()
+    {
+      //option 1
+      // return collect(value: [1, 2, 3])
+      //   ->reverse()
+      //   ->tap(callback: function ($collection) {
+      //     $collection->each(function($value){
+      //       dump(var: 'In Tap' . $value);
+      //     });
+      //   })
+      //   ->first();
+
+        //option 2
+        return collect(value: [1, 2, 3])
+        ->reverse()
+        ->tap(callback: function ($collection) {
+          $collection->reverse()->each(function($value){
+            dump(var: 'In Tap' . $value);
+          });
+        })
+        ->first();
+    }
 
 }
