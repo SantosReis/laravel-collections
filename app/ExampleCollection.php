@@ -234,6 +234,8 @@ class ExampleCollection
 
   }
 
+  //crossJoin()
+  //Tinker \App\ExampleCollection::crossJoin()
   public static function crossJoin()
   {
     $collection = collect(value: [1, 2]);
@@ -249,5 +251,25 @@ class ExampleCollection
       [2018, 2019]
     );
     // )->count(); //get total
+  }
+
+  //diff()
+  //Tinker \App\ExampleCollection::diff()
+  public static function diff(){
+    //option 1
+    // $collection = collect(value: [1, 2, 3]);
+    // return $collection->diff(items: [2, 4, 6]);
+
+    //option 2
+    // $collection = collect(value: ['apple', 'banana']);
+    // return $collection->diff(items: ['pears', 'banana']);
+
+    //option 3
+    // $collection = collect(value: [10 => 'apple', 20 => 'banana']);
+    // return $collection->diffAssoc(items: [30 => 'pears', 20 => 'banana']);
+
+    //option 4
+    $collection = collect(value: [10 => 'apple', 20 => 'banana']);
+    return $collection->diffKeys(items: [30 => 'pears', 20 => 'bananas']);
   }
 }
