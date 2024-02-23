@@ -501,7 +501,19 @@ class ExampleCollection
       return $item->max();
     });
   }
-  
+
+  //Tinker \App\ExampleCollection::where()
+  public static function where()
+  {
+    return collect(value: [
+      ['product' => 'apples', 'price' => 50],
+      ['product' => 'pears', 'price' => 50],
+      ['product' => 'bananas', 'price' => 70],
+      ['product' => 'coconuts', 'price' => 80],
+    ])->where(key: 'price', operator: '>', value: 50); //option 3
+    // ])->where(key: 'price', value: 50); //option 2
+    //])->whereStrict(key: 'price', value: '50'); //option 1
+  }
 }
 
 
