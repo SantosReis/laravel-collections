@@ -173,4 +173,19 @@ class ExampleCollection
     
 
   }
+
+  //concat()
+  //Tinker \App\ExampleCollection::concat()
+  public static function concat()
+  {
+    $data = collect(value: ['value1']);
+
+    //option 1
+    // return $data->concat(source: ['value2']);
+    //option 2
+    // return $data->concat(source: ['value2'])->first();
+    //option 3
+    return $data->concat(source: ['key1' => 'value2']); //concat ignore keys
+
+  }
 }
