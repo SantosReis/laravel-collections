@@ -359,4 +359,46 @@ class ExampleCollection
         ->first();
     }
 
+    /**
+     * 
+     * The map method iterates through the collection and passes 
+     * each value to the given callback. The callback is free to 
+     * modify the item and return it, thus forming a new 
+     * collection of modified items
+     */
+    //map() does not change key values
+    //does not modify original array
+    //Tinker \App\ExampleCollection::map()
+    public static function map()
+    {
+      //option 1
+      // return collect(value: [1, 2, 3, 4])
+      //   ->map(callback: function($item) {
+      //     return $item * 10;
+      //   });
+
+      //option 2 (remain orignal value)
+      // $data = collect(value: [1, 2, 3, 4]);
+      // $newCollection = $data->map(callback: function($item) {
+      //     return $item * 10;
+      //   });
+      // // return $data;
+      // return $newCollection;
+
+      //option 3
+      // return collect(value: [1, 2, 3, 4])
+      //   ->map(callback: function($item, $key) {
+      //     return $item * $key;
+      //   });
+
+      //option 4
+      return collect(value: [
+        'value1' => 'first',
+        'value2' => 'second',
+      ])->map(callback: function ($item, $key) {
+        // return $item . ' ' . $key;
+         return null;
+      });
+    }
+
 }
