@@ -188,4 +188,25 @@ class ExampleCollection
     return $data->concat(source: ['key1' => 'value2']); //concat ignore keys
 
   }
+
+  //contains()
+  //Tinker \App\ExampleCollection::contains()
+  public static function contains()
+  {
+
+    //option 1
+    // return collect(value: ['value1'])->contains(key: 'value1');
+    //option 2
+    // return collect(value: ['key' => 'value1'])->contains(key: 'value1');
+    //option 3
+    // return collect(value: [
+    //   ['other' => 'value1']
+    //   ])->contains(key: 'other', operator: 'value1');
+    //option 4
+    return collect(value: [1, 2, 3, 4, 5])
+      ->contains(key: function ($value, $key){
+        return $value > 4;
+      });
+
+  }
 }
