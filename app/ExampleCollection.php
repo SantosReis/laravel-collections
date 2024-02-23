@@ -41,4 +41,36 @@ class ExampleCollection
       return $value['price'] + $value['tax'];
     });
   }
+
+  //max()
+  //Tinker \App\ExampleCollection::max()
+  public static function max()
+  {
+    //option 1
+    // $data = [10000, 20000, 30000];
+    // return collect(value: $data)->max();
+
+    //option 2
+    // $data = [
+    //   ['price' => 15000],
+    //   ['price' => 20000],
+    //   ['price' => 10000],
+    // ];
+    // return collect(value: $data)->max(callback: 'price');
+
+
+    //option 3
+    $data = [
+      ['price' => 15000, 'tax' => 500, 'active' => true],
+      ['price' => 20000, 'tax' => 700, 'active' => false],
+      ['price' => 10000, 'tax' => 900, 'active' => true],
+    ];
+
+    return collect(value: $data)->max(callback: function($value){
+      if(!$value['active']) {
+        return null;
+      }
+      return $value['price'] + $value['tax'];
+    });
+  }
 }
