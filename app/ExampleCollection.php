@@ -73,4 +73,22 @@ class ExampleCollection
       return $value['price'] + $value['tax'];
     });
   }
+
+  //median()
+  //Tinker \App\ExampleCollection::median()
+  public static function median()
+  {
+    //option 1
+    // $data = [10000, 20000, 30000];
+    // return collect(value: $data)->median();
+
+    //option 2
+    $data = [
+      ['price' => 15000],
+      ['price' => 20000],
+      ['price' => 10000],
+    ];
+    return collect(value: $data)->median(key: 'price');
+
+  }
 }
