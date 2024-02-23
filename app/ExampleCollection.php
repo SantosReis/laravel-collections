@@ -137,4 +137,20 @@ class ExampleCollection
     return $collection->collapse();
 
   }
+
+  //chunk()
+  //Tinker \App\ExampleCollection::chunk()
+  public static function chunk()
+  {
+    $collection = collect(value: 
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    );
+
+    //option 1
+    return $collection->chunk(size: 3);
+    
+    //option 1
+    // return $collection->chunk(size: 3)->first();
+
+  }
 }
