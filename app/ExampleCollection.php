@@ -473,6 +473,34 @@ class ExampleCollection
       });
 
   }
+
+  //Tinker \App\ExampleCollection::mapToDictionary()
+  public static function mapToDictionary()
+  {
+    $collection = collect(value: [
+      ['product' => 'apples', 'price' => 59],
+      ['product' => 'apples', 'price' => 69],
+      ['product' => 'bananas', 'price' => 54],
+      ['product' => 'bananas', 'price' => 94],
+    ]);
+
+    //option 1: mapToDictionary
+    // return $collection->mapToDictionary(callback: function($item){
+    //   return [$item['product'] => $item['price']];
+    // });
+
+    //option 2: mapToGroups
+    // return $collection->mapToGroups(callback: function($item){
+    //   return [$item['product'] => $item['price']];
+    // });
+
+    //option 3: mapToGroups+map+max
+    return $collection->mapToGroups(callback: function($item){
+      return [$item['product'] => $item['price']];
+    })->map(callback: function($item){
+      return $item->max();
+    });
+  }
   
 }
 
