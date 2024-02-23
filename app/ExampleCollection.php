@@ -435,4 +435,36 @@ class ExampleCollection
       });
     }
 
+    //Tinker \App\ExampleCollection::mapWithKeys()
+    public static function mapInto()
+    {
+      $data = collect(value: [1, 2, 3, 4]);
+      //option 1
+      // return $data->mapInto(class: Converter::class)
+      //   ->map(callback: function($item){
+      //     return $item->toCentimeters();
+      //   });
+      //option 2
+      $newCollection = $data->mapInto(class: Converter::class)
+        ->map(callback: function($item){
+          return $item->toCentimeters();
+        });
+      return $newCollection;
+    }
+
+}
+
+class Converter
+{
+  private $amount;
+
+  public function __construct($amount)
+  {
+    $this->amount = $amount;
+  }
+
+  public function toCentimeters()
+  {
+    return $this->amount * 2.54;
+  }
 }
