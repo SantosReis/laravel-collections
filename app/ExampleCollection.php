@@ -148,9 +148,29 @@ class ExampleCollection
 
     //option 1
     return $collection->chunk(size: 3);
-    
+
     //option 1
     // return $collection->chunk(size: 3)->first();
+
+  }
+
+  //combine()
+  //Tinker \App\ExampleCollection::combine()
+  public static function combine()
+  {
+    $keys = collect(value: 
+      ['column1', 'column2'],
+    );
+
+    //option 1
+    // return $keys->combine(values: ['value1', 'value2']);
+
+    //option 2
+    return $keys->combine(values: [
+      ['value1' => 123, 'value3' => 789], 
+      ['value2' => 456]
+    ]);
+    
 
   }
 }
