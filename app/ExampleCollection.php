@@ -255,7 +255,8 @@ class ExampleCollection
 
   //diff()
   //Tinker \App\ExampleCollection::diff()
-  public static function diff(){
+  public static function diff()
+  {
     //option 1
     // $collection = collect(value: [1, 2, 3]);
     // return $collection->diff(items: [2, 4, 6]);
@@ -272,4 +273,59 @@ class ExampleCollection
     $collection = collect(value: [10 => 'apple', 20 => 'banana']);
     return $collection->diffKeys(items: [30 => 'pears', 20 => 'bananas']);
   }
+
+  public static function diffAssocUsing()
+  {
+    //option 1: diffUsing
+    // $collection = collect(value: [10, 25, 50]);
+    // return $collection->diffUsing(items: [.1, .25], callback: function ($a, $b){
+    //   dd($b* 100);
+    // });
+
+    //option 2: diffUsing
+    // $collection = collect(value: [10, 25, 50]);
+    // return $collection->diffUsing(items: [.1, .25], callback: function ($a, $b){
+    //   // dump((int)($b* 100));
+    //   // dump($a === (int)($b* 100) ? 0 : -1);
+    //   return ($a === (int)($b* 100) ? 0 : -1);
+    // });
+
+    //option 3: diffAssocUsing
+    // $collection = collect(value: [10 => 'apple', 25 => 'banana', 50 => 'coconut']);
+    // return $collection->diffAssocUsing(items: ['.1' => 'apple', '.25' => 'pears'], callback: function ($a, $b){
+    //   // dump((int)($b* 100));
+    //   // dump($a === (int)($b* 100) ? 0 : -1);
+    //   return ($a === (int)($b* 100) ? 0 : -1);
+    // });
+
+    //option 4: diffKeysUsing
+    // $collection = collect(value: [10 => 'apple', 25 => 'banana', 50 => 'coconut']);
+    // return $collection->diffKeysUsing(items: ['.1' => 'apple', '.25' => 'pears'], callback: function ($a, $b){
+    //   // dump((int)($b* 100));
+    //   // dump($a === (int)($b* 100) ? 0 : -1);
+    //   return ($a === (int)($b* 100) ? 0 : -1);
+    // });
+
+    //option 5: diffUsing
+    // $collection = collect(value: ['123A-G', '456A-G']);
+    // return $collection->diffUsing(items: ['123AG'], callback: function ($a, $b){
+    //   $code = str_replace(search: '-', replace: '', subject: $a);
+    //   return ($code === $b) ? 0 : -1;
+    // });
+
+    //option 6: diffAssocUsing
+    // $collection = collect(value: ['123A-G' => 10, '456A-G' => 25]);
+    // return $collection->diffAssocUsing(items: ['123AG' => 10], callback: function ($a, $b){
+    //   $code = str_replace(search: '-', replace: '', subject: $a);
+    //   return ($code === $b) ? 0 : -1;
+    // });
+
+    //option 7: diffKeysUsing
+    $collection = collect(value: ['123A-G' => 10, '456A-G' => 25]);
+    return $collection->diffKeysUsing(items: ['123AG' => 10], callback: function ($a, $b){
+      $code = str_replace(search: '-', replace: '', subject: $a);
+      return ($code === $b) ? 0 : -1;
+    });
+  }
+
 }
