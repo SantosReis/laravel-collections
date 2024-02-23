@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 
 class ExampleCollection
@@ -539,6 +541,16 @@ class ExampleCollection
     // ])->whereInStrict('price', [60, 80]);
     // ])->whereNotIn('price', [60, 80]);
     // ])->whereNotInStrict('price', [60, 80]);
+  }
+
+  //Tinker \App\ExampleCollection::whereInstanceOf()
+  public static function whereInstanceOf()
+  {
+    return collect(value: [
+      new Collection(),
+      new User(),
+      new User(),
+    ])->whereInstanceOf(type: User::class);
   }
 }
 
