@@ -123,4 +123,18 @@ class ExampleCollection
     return collect(value: $data)->median(key: 'price');
 
   }
+
+  //collapse()
+  //Tinker \App\ExampleCollection::collapse()
+  //only collapses the first array nested layer.
+  public static function collapse()
+  {
+    $collection = collect(value: [
+      [1, 2, 3],
+      [4, 5, 6],
+    ]);
+
+    return $collection->collapse();
+
+  }
 }
