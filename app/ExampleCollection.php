@@ -209,4 +209,16 @@ class ExampleCollection
       });
 
   }
+
+  //containsStrict()
+  //Tinker \App\ExampleCollection::containsStrict()
+  public static function containsStrict()
+  {
+
+    //option 1
+    // return collect(value: [15])->containsStrict(key: '15');
+    //option 2
+    return collect(value: ['  0015'])->containsStrict(key: ' 15');
+
+  }
 }
