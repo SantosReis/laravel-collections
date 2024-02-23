@@ -526,6 +526,20 @@ class ExampleCollection
     // ])->whereBetween('price', [60, 80]);
     ])->whereNotBetween('price', [60, 80]);
   }
+
+  //Tinker \App\ExampleCollection::whereBetween()
+  public static function whereIn()
+  {
+    return collect(value: [
+      ['product' => 'apples', 'price' => 50],
+      ['product' => 'pears', 'price' => 50],
+      ['product' => 'bananas', 'price' => 70],
+      ['product' => 'coconuts', 'price' => 80],
+    ])->whereIn('price', [70, 80]);
+    // ])->whereInStrict('price', [60, 80]);
+    // ])->whereNotIn('price', [60, 80]);
+    // ])->whereNotInStrict('price', [60, 80]);
+  }
 }
 
 
