@@ -221,4 +221,16 @@ class ExampleCollection
     return collect(value: ['  0015'])->containsStrict(key: ' 15');
 
   }
+
+  //NOTE: count does not return an collection. It means must be last method to be called.
+  //count()
+  //Tinker \App\ExampleCollection::count()
+  public static function count()
+  {
+
+    $data = [1, 2 => [5, 6], 3, 4];
+
+    return collect(value: $data)->count();
+
+  }
 }
