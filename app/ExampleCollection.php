@@ -233,4 +233,21 @@ class ExampleCollection
     return collect(value: $data)->count();
 
   }
+
+  public static function crossJoin()
+  {
+    $collection = collect(value: [1, 2]);
+    //option 1
+    // return $collection->crossJoin(lists: ['a', 'b']);
+    //option 2
+    // return $collection->crossJoin(['a', 'b'], ['c', 'd']);
+    //option 3
+    $collection = collect(value: ['Ferrari', 'GT', 'F150']);
+    return $collection->crossJoin(
+      ['automatic', 'manual'],
+      ['blue', 'black', 'white', 'yellow', 'gray'],
+      [2018, 2019]
+    );
+    // )->count(); //get total
+  }
 }
