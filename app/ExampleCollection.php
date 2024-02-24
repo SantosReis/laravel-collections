@@ -733,12 +733,29 @@ class ExampleCollection
   {
     //option 1
     // return collect([1, 2, 3, 4])->first();
+    // return collect([1, 2, 3, 4])->first(null, 1000);
     //option 2
     // return collect([1, 2, 3, 4])->first(function ($element) {
     //     return $element > 1;
     // });
     //option 3
     return collect([1, 2])->first(function ($element) {
+      return $element > 3;
+    }, 1000); //set a default value
+  }
+
+  //Tinker \App\ExampleCollection::last()
+  public static function last()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])->last();
+    // return collect([1, 2, 3, 4])->last(null, 1000);
+    //option 2
+    // return collect([1, 2, 3, 4])->last(function ($element) {
+    //     return $element < 4;
+    // });
+    //option 3
+    return collect([1, 2])->last(function ($element) {
       return $element > 3;
     }, 1000); //set a default value
   }
