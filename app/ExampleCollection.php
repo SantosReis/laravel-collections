@@ -641,6 +641,20 @@ class ExampleCollection
     // ])->firstWhere('price', '50'); //option 2
     ])->firstWhere('price', '>=', '50'); //option 3
   }
+
+  //Tinker \App\ExampleCollection::zip()
+  public static function zip()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])->zip([5, 6, 7, 8]);
+    //option 1
+    return collect([1, 2, 3, 4])
+      ->zip(
+        [5, 6, 7, 8],
+        ['a', 'b', 'c', 'd'],
+        [null, 'f', 'g']
+    );
+  }
 }
 
 
