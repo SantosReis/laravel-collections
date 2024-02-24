@@ -692,6 +692,41 @@ class ExampleCollection
       return str_replace('-', '', $item['code']);
     });
   }
+
+  //Tinker \App\ExampleCollection::groupBy()
+  public static function groupBy()
+  {
+
+    //option 1
+    // return collect([
+    //   ['product' => 'apples', 'price' => 50, 'quantity' => 5, 'code' => 'A-30'],
+    //   ['product' => 'bananas', 'price' => 60, 'quantity' => 10, 'code' => 'A20'],
+    //   ['product' => 'oranges', 'price' => 70, 'quantity' => 15, 'code' => 'A-50'],
+    //   ['product' => 'coconuts', 'price' => 80, 'quantity' => 25, 'code' => 'A-10'],
+    //   ['product' => 'coconuts', 'price' => 85, 'quantity' => 9, 'code' => 'A-11'],
+    //   ['product' => 'apples', 'price' => 55, 'quantity' => 35, 'code' => 'A-31'],
+    // ])->groupBy('product');
+
+    //option 2
+    // return collect([
+    //   'string1' => ['product' => 'apples', 'price' => 50, 'quantity' => 5, 'code' => 'A-30'],
+    //   'string2' => ['product' => 'bananas', 'price' => 60, 'quantity' => 10, 'code' => 'A20'],
+    //   'string3' => ['product' => 'oranges', 'price' => 70, 'quantity' => 15, 'code' => 'A-50'],
+    //   'string4' => ['product' => 'coconuts', 'price' => 80, 'quantity' => 25, 'code' => 'A-10'],
+    //   'string5' => ['product' => 'coconuts', 'price' => 85, 'quantity' => 9, 'code' => 'A-11'],
+    //   'string6' => ['product' => 'apples', 'price' => 55, 'quantity' => 35, 'code' => 'A-31'],
+    // ])->groupBy('product', true);
+
+    //option 3
+    return collect([
+      ['code' => '123VG', 'name' => 'string1'],
+      ['code' => '123-VG', 'name' => 'string2'],
+      ['code' => '123 VG', 'name' => 'string3'],
+      ['code' => '125 VG', 'name' => 'string4'],
+    ])->groupBy(function($element) {
+      return str_replace(['-', ' '], '', $element['code']);
+    });
+  }
 }
 
 
