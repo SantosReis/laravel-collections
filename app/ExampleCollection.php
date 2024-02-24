@@ -831,6 +831,49 @@ class ExampleCollection
 
     
   }
+
+  /**
+   * 
+   * each() is a utility method not a mapping method 
+   * does not affect the collection 
+   * 
+   */
+  //Tinker \App\ExampleCollection::each()
+  public static function each()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])
+    //   ->each(function ($value){
+    //     dump("The current value is {$value}");
+    //   });
+
+    //option 2
+    // return collect([1, 2, 3, 4])
+    //   ->each(function ($value){
+    //   if($value > 2){
+    //     return false;
+    //   }
+    //   dump("The current value is {$value}");
+    // });
+
+    //option 3
+    // return collect([
+    //   ['bananas', 45, 'California'],
+    //   ['apples', 20, 'Florida'],
+    //   ['coconuts', 60, 'Texas'],
+    // ])->each(function ($value){
+    //   dump("We have {$value[1]} {$value[0]} in out {$value[2]} store.");
+    // });
+
+    //option 3
+    return collect([
+      ['bananas', 45, 'California'],
+      ['apples', 20, 'Florida'],
+      ['coconuts', 60, 'Texas'],
+    ])->eachSpread(function ($product, $qty, $location){
+      dump("We have {$product} {$qty} in out {$location} store.");
+    });
+  }
 }
 
 
