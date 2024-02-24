@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Collection;
 
 
@@ -587,6 +588,46 @@ class ExampleCollection
     });
   }
 
+  //Tinker \App\ExampleCollection::pluck()
+  public static function pluck()
+  {
+    //option 1
+    // return collect([
+    //   ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+    //   ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+    //   ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+    //   ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    // ])->pluck('price');
+    //option 2
+    // return collect([
+    //   ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+    //   ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+    //   ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+    //   ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    // ])->map(function($item){
+    //   return Arr::only($item, ['product', 'quantity']);
+    // });
+    //option 3
+    // return collect([
+    //   ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+    //   ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+    //   ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+    //   ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    // ])->map(function($item){
+    //   return collect($item)->only(['product', 'quantity'])->all();
+    // });
+    //option 4: setting keys
+    return collect([
+      ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+      ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+      ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+      ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    ])->mapWithKeys(function($item){
+      return [
+        $item['quantity'] => collect($item)->only(['product', 'quantity'])->all()
+      ];
+    });
+  }
 }
 
 
