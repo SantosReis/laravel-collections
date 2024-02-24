@@ -572,6 +572,21 @@ class ExampleCollection
     return $everyThree->mergeArray(collect(value: [1, 2, 3, 4]), [5, 6, 7, 8], 'string');
   }
 
+  //Tinker \App\ExampleCollection::filter()
+  public static function filter()
+  {
+    //option 1
+    // return collect(value: [1, 2, 3, 4, null, '', 0, false, []])->filter();
+    //option 2
+    // return collect(value: [1, 2, 3, 4])->filter(callback: function($value){
+    //   return ($value % 2) == 0;
+    // });
+    //option 2
+    return collect(value: [1, 2, 3, 4])->filter(callback: function($value, $key){
+      return $key > 2;
+    });
+  }
+
 }
 
 
