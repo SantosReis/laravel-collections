@@ -552,6 +552,16 @@ class ExampleCollection
       new User(),
     ])->whereInstanceOf(type: User::class);
   }
+
+  //TODO
+  //Tinker \App\ExampleCollection::wrap()
+  public static function wrap()
+  {
+
+    $everyThree = new Pivot();
+     return $everyThree->everyThree(collection1: collect(value: [1, 2, 3, 4]), collection2: [5, 6, 7, 8]);
+  }
+
 }
 
 
@@ -567,5 +577,26 @@ class Converter
   public function toCentimeters()
   {
     return $this->amount * 2.54;
+  }
+
+}
+
+class Pivot
+{
+
+  // public function everyThree($collection1, $collection2){
+  //   return Collection::wrap(value: $collection1)->nth(step: 3)
+  //     ->merge(
+  //       items: Collection::wrap(value: $collection2)->nth(step: 3)
+  //     );
+  // }
+  public function everyThree(...$collections){
+    // return Collection::wrap(value: $collections)->map(callback: function($item){
+    //   return Collection::wrap(value: $item)->nth(step: 3);
+    // });
+
+    return Collection::wrap(value: $collections)->flatMap(callback: function($item){
+      return Collection::wrap(value: $item)->nth(step: 3);
+    });
   }
 }
