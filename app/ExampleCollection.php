@@ -805,6 +805,17 @@ class ExampleCollection
     return collect([1, 2, 3, 4])->take(-2);
     
   }
+
+  //Tinker \App\ExampleCollection::nth()
+  public static function nth()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4, 5, 6])->nth(2);
+
+    //option 2
+    return collect([1, 2, 3, 4, 5, 6, 7, 8])->nth(2, 5); //offset as second param
+    
+  }
 }
 
 
