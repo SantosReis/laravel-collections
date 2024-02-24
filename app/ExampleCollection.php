@@ -779,6 +779,22 @@ class ExampleCollection
     // }
     
   }
+
+  //Tinker \App\ExampleCollection::reverse()
+  public static function reverse()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])->reverse();
+    // return collect([1, 2, 3, 4])->reverse()->values();
+
+    //option 2
+    return collect([
+      'key1' => 'string1',
+      'key2' => 'string2',
+      'key3' => 'string3',
+    ])->reverse()->values();
+    
+  }
 }
 
 
