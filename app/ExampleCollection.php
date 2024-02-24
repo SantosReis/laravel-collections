@@ -727,6 +727,21 @@ class ExampleCollection
       return str_replace(['-', ' '], '', $element['code']);
     });
   }
+
+  //Tinker \App\ExampleCollection::first()
+  public static function first()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])->first();
+    //option 2
+    // return collect([1, 2, 3, 4])->first(function ($element) {
+    //     return $element > 1;
+    // });
+    //option 3
+    return collect([1, 2])->first(function ($element) {
+      return $element > 3;
+    }, 1000); //set a default value
+  }
 }
 
 
