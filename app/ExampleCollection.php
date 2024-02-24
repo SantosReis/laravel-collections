@@ -628,6 +628,19 @@ class ExampleCollection
       ];
     });
   }
+
+  //Tinker \App\ExampleCollection::firstWhere()
+  public static function firstWhere()
+  {
+    return collect([
+      ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+      ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+      ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+      ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    //])->where('price', '50')->first(); //option 1
+    // ])->firstWhere('price', '50'); //option 2
+    ])->firstWhere('price', '>=', '50'); //option 3
+  }
 }
 
 
