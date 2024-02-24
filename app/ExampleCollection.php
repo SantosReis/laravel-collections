@@ -759,6 +759,26 @@ class ExampleCollection
       return $element > 3;
     }, 1000); //set a default value
   }
+
+  //Tinker \App\ExampleCollection::last()
+  public static function isEmpty()
+  {
+    //option 1
+    return collect([0, false, null])->isEmpty();
+
+    //option 2
+    // $data = collect([]);
+    // // $data = collect([1, 2, 3, 4]);
+    // if($data->isEmpty()){
+    //   return 'No Items';
+    // }
+
+    // //option 3
+    // if($data->isNotEmpty()){
+    //   return 'We have items!';
+    // }
+    
+  }
 }
 
 
