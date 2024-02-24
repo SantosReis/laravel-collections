@@ -562,6 +562,16 @@ class ExampleCollection
      return $everyThree->everyThree(collection1: collect(value: [1, 2, 3, 4]), collection2: [5, 6, 7, 8]);
   }
 
+  //Tinker \App\ExampleCollection::unwrap()
+  public static function unwrap()
+  {
+    $everyThree = new Pivot();
+    //option 1
+    // return $everyThree->mergeArray(array1: collect(value: [1, 2, 3, 4]), array2: [5, 6, 7, 8]);
+    //option 2
+    return $everyThree->mergeArray(collect(value: [1, 2, 3, 4]), [5, 6, 7, 8], 'string');
+  }
+
 }
 
 
@@ -597,6 +607,30 @@ class Pivot
 
     return Collection::wrap(value: $collections)->flatMap(callback: function($item){
       return Collection::wrap(value: $item)->nth(step: 3);
+    });
+  }
+
+  //option 1
+  // public function mergeArray($array1, $array2){
+  //   return array_merge(
+  //     Collection::unwrap(value: $array1),
+  //     Collection::unwrap(value: $array2),
+  //   );
+  // }
+
+  //option 2
+  // public function mergeArray(...$arrays){
+  //   return collect(value: $arrays)->map(callback: function($item){
+  //     // return array_wrap(value: Collection::unwrap(value: $item));
+  //     return Collection::unwrap(value: $item);
+  //   });
+  // }
+
+  //option 3
+  public function mergeArray(...$arrays){
+    return collect(value: $arrays)->flatMap(callback: function($item){
+      // return array_wrap(value: Collection::unwrap(value: $item));
+      return Collection::unwrap(value: $item);
     });
   }
 }
