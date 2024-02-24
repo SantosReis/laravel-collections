@@ -655,6 +655,21 @@ class ExampleCollection
         [null, 'f', 'g']
     );
   }
+
+  //Tinker \App\ExampleCollection::sort()
+  public static function sort()
+  {
+    //option 1
+    // return collect([5, 7, 3, 9])->sort();
+    //option 2
+    // return collect(['A12', 'B54', 'B23', 'A43'])->sort();
+    //option 3
+    return collect(['A-43', 'B54', 'B-23', 'A43'])
+      ->sort(function ($a, $b) {
+        $code = str_replace('-', '', $a);
+        return ($code < $b) ? -1: 1;
+      });
+  }
 }
 
 
