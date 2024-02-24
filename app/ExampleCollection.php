@@ -816,6 +816,21 @@ class ExampleCollection
     return collect([1, 2, 3, 4, 5, 6, 7, 8])->nth(2, 5); //offset as second param
     
   }
+
+  //Tinker \App\ExampleCollection::only()
+  public static function only()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4, 5, 6])->only(2);
+
+    //option 2
+    // return collect(['product' => 'coconuts', 'price' => 10, 'qty' => 45])->only('product');
+
+    //option 3
+    return collect(['product' => 'coconuts', 'price' => 10, 'qty' => 45])->only(['product', 'price']);
+
+    
+  }
 }
 
 
