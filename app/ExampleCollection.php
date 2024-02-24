@@ -874,6 +874,23 @@ class ExampleCollection
       dump("We have {$product} {$qty} in out {$location} store.");
     });
   }
+
+  //Tinker \App\ExampleCollection::times()
+  public static function times()
+  {
+    //option 1
+    // return Collection::times(3, function ($value) {
+    //   return 10;
+    // });
+
+    //option 2
+    return Collection::times(3, function ($value) {
+      return User::factory()->make([
+        'name' => "{$value} Cool Name",
+      ]);
+    })->toArray();
+    
+  }
 }
 
 
