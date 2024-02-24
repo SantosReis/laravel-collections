@@ -670,6 +670,28 @@ class ExampleCollection
         return ($code < $b) ? -1: 1;
       });
   }
+
+  //Tinker \App\ExampleCollection::firstWhere()
+  public static function sortBy()
+  {
+    // return collect([
+    //   ['product' => 'apples', 'price' => 50, 'quantity' => 5],
+    //   ['product' => 'bananas', 'price' => 60, 'quantity' => 10],
+    //   ['product' => 'oranges', 'price' => 70, 'quantity' => 15],
+    //   ['product' => 'coconuts', 'price' => 80, 'quantity' => 25],
+    // // ])->sortBy('price'); //option 1
+    // ])->sortByDesc('price'); //option 2
+
+    //option 3
+    return collect([
+      ['product' => 'apples', 'price' => 50, 'quantity' => 5, 'code' => 'A-30'],
+      ['product' => 'bananas', 'price' => 60, 'quantity' => 10, 'code' => 'A20'],
+      ['product' => 'oranges', 'price' => 70, 'quantity' => 15, 'code' => 'A-50'],
+      ['product' => 'coconuts', 'price' => 80, 'quantity' => 25, 'code' => 'A-10'],
+    ])->sortBy(function ($item) {
+      return str_replace('-', '', $item['code']);
+    });
+  }
 }
 
 
