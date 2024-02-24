@@ -795,6 +795,16 @@ class ExampleCollection
     ])->reverse()->values();
     
   }
+
+  //Tinker \App\ExampleCollection::take()
+  public static function take()
+  {
+    //option 1
+    // return collect([1, 2, 3, 4])->take(2);
+    //option 2
+    return collect([1, 2, 3, 4])->take(-2);
+    
+  }
 }
 
 
