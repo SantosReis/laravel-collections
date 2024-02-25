@@ -891,6 +891,20 @@ class ExampleCollection
     })->toArray();
     
   }
+
+  //Tinker \App\ExampleCollection::toArray()
+  public static function toArray()
+  {
+    // return collect([
+    //   collect([1, 2, 3, 4]),
+    //   collect([1, 2, 3, 4]),
+    // ])->all();
+
+    return collect([
+      collect([1, 2, 3, 4]),
+      collect([1, 2, 3, 4]),
+    ])->toArray();
+  }
 }
 
 
