@@ -21,23 +21,16 @@ Route::get('/', function () {
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
 
 Route::get('generator', function() {
-    function happyFunction() {
-        dump(var: 1);
-        yield 'One';
-        dump(var: 2);
+    function happyFunction($strings) {
+        foreach($strings as $string){
+            dump(var: 'start');
+            yield $string;
+            dump(var: 'end');
+        }
 
-        dump(var: 3);
-        yield 'Two';
-        dump(var: 4);
-
-        dump(var: 5);
-        yield 'Three';
-        dump(var: 6);
     }
 
-    $return = happyFunction();
-
-    foreach(happyFunction() as $result){
+    foreach(happyFunction(['One', 'Two', 'Three']) as $result){
 
         if($result == 'Two') {
             return;
