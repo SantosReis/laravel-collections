@@ -22,10 +22,18 @@ Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
 
 Route::get('generator', function() {
     function happyFunction($string) {
-        // return $string; // must be of type object, string given
-        yield $string;
+        dump(var: 1);
+        yield 'One';
+        dump(var: 2);
+
+        dump(var: 3);
+        yield 'Two';
+        dump(var: 4);
+
+        dump(var: 5);
+        yield 'Three';
+        dump(var: 6);
     }
 
-    // return get_class(object: happyFunction(string: 'Supper Happy')); //check generators name
-    return get_class_methods(happyFunction(string: 'Supper Happy')); //check generators methods
+    return happyFunction(string: 'Supper Happy')->current(); //check iteration
 });
