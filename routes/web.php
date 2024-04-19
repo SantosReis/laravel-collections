@@ -37,11 +37,11 @@ Route::get('generator', function() {
 
     $return = happyFunction();
 
-    dump(var: $return->current());
+    foreach(happyFunction() as $result){
 
-    $return->next();
-
-    dump(var: $return->current());
-
-    // return happyFunction(string: 'Supper Happy')->current(); //check iteration
+        if($result == 'Two') {
+            return;
+        }
+        dump( var: $result);
+    }
 });
