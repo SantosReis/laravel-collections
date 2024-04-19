@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
+Route::get('/lazy-collections/writingfile', [LazyCollectionExample::class, 'writingfile']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {
