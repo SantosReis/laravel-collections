@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
 
 Route::get('generator', function() {
-    function happyFunction($string) {
+    function happyFunction() {
         dump(var: 1);
         yield 'One';
         dump(var: 2);
@@ -35,5 +35,13 @@ Route::get('generator', function() {
         dump(var: 6);
     }
 
-    return happyFunction(string: 'Supper Happy')->current(); //check iteration
+    $return = happyFunction();
+
+    dump(var: $return->current());
+
+    $return->next();
+
+    dump(var: $return->current());
+
+    // return happyFunction(string: 'Supper Happy')->current(); //check iteration
 });
