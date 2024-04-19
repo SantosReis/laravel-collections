@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
+Route::get('/lazy-collections/loadlog', [LazyCollectionExample::class, 'readingFile']);
+Route::get('/lazy-collections/loadlog2', [LazyCollectionExample::class, 'readingFile2']);
 Route::get('/lazy-collections/writingfile', [LazyCollectionExample::class, 'writingfile']);
 
 Route::get('generator-iterator', function() {
