@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
 
-Route::get('generator', function() {
+Route::get('generator-iterator', function() {
     function happyFunction($strings) {
         foreach($strings as $string){
             dump(var: 'start');
@@ -37,4 +37,36 @@ Route::get('generator', function() {
         }
         dump( var: $result);
     }
+});
+
+Route::get('generator', function() {
+    // function notHappyFunction($number){
+    //     $return = [];
+    //     for($i=1; $i<$number; $i++){
+    //         $return[] = $i;
+    //     }
+
+    //     return $return;
+    // }
+
+    // foreach (notHappyFunction(number: 100000000) as $number){
+    //     if($number % 1000 == 0){
+    //         dump(var: 'hello');
+    //     }
+    // }
+    function happiestFunction($number){
+        $return = [];
+        for($i=1; $i<$number; $i++){
+            yield $i;
+        }
+
+        return $return;
+    }
+
+    foreach (happiestFunction(100000000) as $number){
+        if($number % 1000 == 0){
+            dump(var: 'hello');
+        }
+    }
+
 });
