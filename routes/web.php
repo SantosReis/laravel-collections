@@ -19,3 +19,13 @@ Route::get('/', function () {
 });
 
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
+
+Route::get('generator', function() {
+    function happyFunction($string) {
+        // return $string; // must be of type object, string given
+        yield $string;
+    }
+
+    // return get_class(object: happyFunction(string: 'Supper Happy')); //check generators name
+    return get_class_methods(happyFunction(string: 'Supper Happy')); //check generators methods
+});
