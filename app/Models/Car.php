@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CarModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Car extends Model
 {
@@ -17,4 +18,9 @@ class Car extends Model
 
     // protected $hidden = ['name', 'founded', 'description', 'image_path', 'user_id'];
     // protected $visible = ['name', 'founded', 'description', 'image_path', 'user_id'];
+
+    public function carModels()
+    {
+        return $this->hasMany(CarModel::class);
+    }
 }

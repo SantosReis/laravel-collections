@@ -6,12 +6,10 @@ use App\Models\Car;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Car>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CarModel>
  */
-class CarFactory extends Factory
+class CarModelFactory extends Factory
 {
-    // protected $model = Car::class;
-
     /**
      * Define the model's default state.
      *
@@ -19,10 +17,12 @@ class CarFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'name' => fake()->lastName(),
-            'founded' => fake()->year(),
-            'description' => fake()->text(),
+            'model_name' => fake()->company(),
+            'car_id' => function () {
+                return Car::factory()->create()->id;
+            },
         ];
     }
 }
