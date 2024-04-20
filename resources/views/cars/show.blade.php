@@ -6,36 +6,55 @@
             <h1 class="text-5xl uppercase bold">
                 {{ $brand->name }}
             </h1>
-            <p class="text-lg text-gray-700 py-6">{{ $brand->headquarter->headquarters }} - {{ $brand->headquarter->country }}</p>
         </div>
 
         <div class="py-10 text-center">
-                <div class="m-auto">
-                    <span class="uppercase text-blue-500 font-bold text-xs italic">
-                        Founded: {{ $brand->founded }}
-                    </span>
+            <div class="m-auto">
+                <span class="uppercase text-blue-500 font-bold text-xs italic">
+                    Founded: {{ $brand->founded }}
+                </span>
 
-                    <p class="text-lg text-gray-700 py-6">
-                        {{ $brand->description }}
-                    </p>
+                <p class="text-lg text-gray-700 py-6">
+                    {{ $brand->description }}
+                </p>
 
-                    <ul>
-                        <p class="text-lg text-gray-700 py-6">
-                            Model
-                        </p>
+                <table class="table-auto">
+                        <tr class="bg-blue-100">
+                            <th class="w-1/4 border-4 border-gray-500">
+                                Model
+                            </th>
+                            <th class="w-1/4 border-4 border-gray-500">
+                                Engines
+                            </th>
+                            <th class="w-1/4 border-4 border-gray-500">
+                                Date
+                            </th>
+                        </tr>
 
                         @forelse ($brand->carModels as $model)
-                            <li class="inline italic text-gray-600 px-1 py-6">
-                                {{ $model->model_name }}
-                            </li>
-                        @empty
-                            <li>No models found!</li>
-                        @endforelse
+                            <tr>
+                                <td class="border-4 border-gray-500">
+                                    {{ $model->model_name }}
+                                </td>
 
-                    </ul>
-                    
-                    <hr class="mt-4 mb-8">
-                </div>
+                                <td class="border-4 border-gray-500">
+                                    @foreach ($brand->engines as $engine)
+                                        @if ($model->id == $engine->model_id)
+                                            {{ $engine->engine_name }}; 
+                                        @endif
+                                    @endforeach
+                                </td>
+
+                            </tr>
+                        @empty
+                            <p>
+                                No car models found!
+                            </p>
+                        @endforelse
+                    </table>
+                
+                <hr class="mt-4 mb-8">
+            </div>
         </div>
     </div>
 

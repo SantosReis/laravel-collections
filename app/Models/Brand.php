@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Engine;
 use App\Models\CarModel;
 use App\Models\Headquarter;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $table = 'brands';
+protected $table = 'brands';
 
     protected $primaryKey = 'id';
 
@@ -28,5 +29,16 @@ class Brand extends Model
     public function headquarter()
     {
         return $this->hasOne(Headquarter::class);
+    }
+
+    //Define a has many through relationship
+    public function engines()
+    {
+        return $this->hasManyThrough(
+                Engine::class,
+                CarModel::class,
+                'brand_id', //Foreign key on CarModel table
+                'model_id' //Foreign key on Engine table
+            );
     }
 }
