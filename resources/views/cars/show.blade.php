@@ -6,6 +6,7 @@
             <h1 class="text-5xl uppercase bold">
                 {{ $brand->name }}
             </h1>
+            <p class="text-lg text-gray-700 py-6">{{ $brand->headquarter->headquarters }} - {{ $brand->headquarter->country }}</p>
         </div>
 
         <div class="py-10 text-center">
@@ -18,32 +19,20 @@
                         {{ $brand->description }}
                     </p>
 
-                    <table class="table-auto">
-                        <tr class="bg-blue-100">
-                            <th class="w-1/4 border-4 border-gray-500">
-                                Model
-                            </th>
-                            <th class="w-1/4 border-4 border-gray-500">
-                                Engines
-                            </th>
-                            <th class="w-1/4 border-4 border-gray-500">
-                                Date
-                            </th>
-                        </tr>
+                    <ul>
+                        <p class="text-lg text-gray-700 py-6">
+                            Model
+                        </p>
 
                         @forelse ($brand->carModels as $model)
-                            <tr>
-                                <td class="border-4 border-gray-500">
-                                    {{ $model->model_name }}
-                                </td>
-                            </tr>
+                            <li class="inline italic text-gray-600 px-1 py-6">
+                                {{ $model->model_name }}
+                            </li>
                         @empty
-                            <p>
-                                No models found!
-                            </p>
+                            <li>No models found!</li>
                         @endforelse
 
-                    </table>
+                    </ul>
                     
                     <hr class="mt-4 mb-8">
                 </div>

@@ -51,6 +51,19 @@ class CarsController extends Controller
     public function show(string $id)
     {
         $brand = Brand::findOrFail($id);
+
+        // dd($brand);
+
+        // dump($brand->carModels()->count());
+        // $brand->carModels()->dd();
+        // dump($brand->carModels()->get()->toArray());
+
+        // dump($brand->headquarter()->count());
+        // $brand->headquarter()->dd();
+        // dump($brand->headquarter()->get()->toArray());
+        // dump($brand->headquarter()->first()->toArray());
+
+        // dd($brand->toArray());
     
         return view('cars.show')->with('brand', $brand);
     }
