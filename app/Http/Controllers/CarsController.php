@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Car;
+use App\Models\Brand;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
@@ -13,8 +13,8 @@ class CarsController extends Controller
      */
     public function index(): View
     {
-        $cars = Car::all();
-        return view('cars.index', ['cars' => $cars]);
+        $brand = Brand::all();
+        return view('cars.index', ['brands' => $brand]);
     }
 
     /**
@@ -36,7 +36,7 @@ class CarsController extends Controller
             'description' => 'required',
         ]);
             
-        Car::create([
+        Brand::create([
             'name' => $request->input('name'),
             'founded' => $request->input('founded'),
             'description' => $request->input('description'),
@@ -50,9 +50,9 @@ class CarsController extends Controller
      */
     public function show(string $id)
     {
-        $car = Car::findOrFail($id);
+        $brand = Brand::findOrFail($id);
     
-        return view('cars.show')->with('car', $car);
+        return view('cars.show')->with('brand', $brand);
     }
 
     /**
@@ -60,8 +60,8 @@ class CarsController extends Controller
      */
     public function edit(string $id)
     {
-        $car = Car::findOrFail($id);
-        return view('cars.edit')->with('car', $car);
+        $brand = Brand::findOrFail($id);
+        return view('cars.edit')->with('brand', $brand);
     }
 
     /**
@@ -69,7 +69,7 @@ class CarsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $car = Car::where('id', $id)
+        Brand::where('id', $id)
             ->update([
                 'name' => $request->input('name'),
                 'founded' => $request->input('founded'),
@@ -82,9 +82,9 @@ class CarsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Car $car)
+    public function destroy(Brand $brand)
     {
-        $car->delete();
+        $brand->delete();
 
         return redirect('/cars');
     }

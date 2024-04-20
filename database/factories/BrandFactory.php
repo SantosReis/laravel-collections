@@ -2,15 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Car;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Car>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Brand>
  */
-class CarFactory extends Factory
+class BrandFactory extends Factory
 {
-    // protected $model = Car::class;
 
     /**
      * Define the model's default state.

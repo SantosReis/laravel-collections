@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Car;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +20,8 @@ class CarModelFactory extends Factory
 
         return [
             'model_name' => fake()->company(),
-            'car_id' => function () {
-                return Car::factory()->create()->id;
+            'brand_id' => function () {
+                return Brand::factory()->create()->id;
             },
         ];
     }

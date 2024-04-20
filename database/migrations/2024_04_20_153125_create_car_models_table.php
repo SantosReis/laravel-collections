@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('car_models', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('car_id');
+            $table->unsignedInteger('brand_id');
             $table->string('model_name');
             $table->timestamps();
-            $table->foreign('car_id')
+            $table->foreign('brand_id')
                 ->references('id')
-                ->on('cars')
+                ->on('brands')
                 ->onDelete('cascade');
         });
     }
