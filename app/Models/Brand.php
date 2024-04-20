@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Engine;
 use App\Models\CarModel;
 use App\Models\Headquarter;
+use App\Models\CarProductionDate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -40,5 +41,16 @@ protected $table = 'brands';
                 'brand_id', //Foreign key on CarModel table
                 'model_id' //Foreign key on Engine table
             );
+    }
+
+    //Define a has one through relationship
+    public function productionDate()
+    {
+        return $this->hasOneThrough(
+            CarProductionDate::class,
+            CarModel::class,
+            'brand_id',
+            'model_id'
+        );
     }
 }

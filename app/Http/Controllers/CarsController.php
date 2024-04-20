@@ -63,7 +63,11 @@ class CarsController extends Controller
         // dump($brand->headquarter()->get()->toArray());
         // dump($brand->headquarter()->first()->toArray());
 
+        // dump($brand->productionDate()->count());
+        // dump($brand->productionDate()->get()->toArray());
+        // die();
         // dd($brand->toArray());
+
     
         return view('cars.show')->with('brand', $brand);
     }

@@ -6,9 +6,9 @@ use App\Models\CarModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Engine>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CarProductionDate>
  */
-class EngineFactory extends Factory
+class CarProductionDateFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class EngineFactory extends Factory
     public function definition(): array
     {
         return [
-            'engine_name' => fake()->numberBetween(1, 4),
+            'created_at' => fake()->date(),
             'model_id' => function () {
                 return CarModel::factory()->create()->id;
             },
