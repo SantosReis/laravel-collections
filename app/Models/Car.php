@@ -14,4 +14,7 @@ class Car extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['name', 'founded', 'description', 'image_path', 'user_id'];
+
+    // protected $hidden = ['name', 'founded', 'description', 'image_path', 'user_id'];
+    // protected $visible = ['name', 'founded', 'description', 'image_path', 'user_id'];
 }
