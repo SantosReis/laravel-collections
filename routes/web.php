@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CollectionAdvanced;
 use App\Http\Controllers\LazyCollectionExample;
@@ -18,6 +19,8 @@ use App\Http\Controllers\LazyCollectionExample;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/cars', CarsController::class);
 
 Route::get('/lazy-collections', [LazyCollectionExample::class, 'index']);
 Route::get('/lazy-collections/loadlog', [LazyCollectionExample::class, 'readingFile']);
