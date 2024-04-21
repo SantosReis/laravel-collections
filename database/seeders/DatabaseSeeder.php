@@ -21,13 +21,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        // \App\Models\User::factory(10000)->create();
         // CarModelFactory::times(5)->create();
         // HeadquarterFactory::times(5)->create();
         // EngineFactory::times(5)->create();
         // CarProductionDateFactory::times(5)->create();
 
         // ProductFactory::times(5)->create();
-        CarProductFactory::times(5)->create();
+        // CarProductFactory::times(5)->create();
 
     }
 }

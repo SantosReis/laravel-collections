@@ -27,6 +27,7 @@ Route::get('/lazy-collections/loadlog', [LazyCollectionExample::class, 'readingF
 Route::get('/lazy-collections/loadlog2', [LazyCollectionExample::class, 'readingFile2']);
 Route::get('/lazy-collections/writingfile', [LazyCollectionExample::class, 'writingfile']);
 Route::get('/collections-advanced', [CollectionAdvanced::class, 'index']);
+Route::get('/collections-vs-arrays', [CollectionAdvanced::class, 'collectionsVersusArrays']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {
