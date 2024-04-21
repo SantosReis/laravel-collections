@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Engine;
+use App\Models\Product;
 use App\Models\CarModel;
 use App\Models\Headquarter;
 use App\Models\CarProductionDate;
@@ -52,5 +53,10 @@ protected $table = 'brands';
             'brand_id',
             'model_id'
         );
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'car_products');
     }
 }

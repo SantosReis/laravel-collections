@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,15 @@ class CarsController extends Controller
 
         // dump($brand->productionDate()->count());
         // dump($brand->productionDate()->get()->toArray());
+        // die();
+
+        // dump($brand->products()->count());
+        // dump($brand->products()->get()->toArray());
+        // die();
+
+        // $products = Product::find(3);
+        // dump($products->brands()->count());
+        // dump($products->brands()->get()->toArray());
         // die();
         // dd($brand->toArray());
 

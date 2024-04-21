@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Brand;
+use Database\Factories\ProductFactory;
+use Database\Factories\CarProductFactory;
 use Illuminate\Database\Seeder;
 use Database\Factories\UserFactory;
 use Database\Factories\EngineFactory;
@@ -19,10 +21,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        CarModelFactory::times(5)->create();
-        HeadquarterFactory::times(5)->create();
-        EngineFactory::times(5)->create();
-        CarProductionDateFactory::times(5)->create();
+        // CarModelFactory::times(5)->create();
+        // HeadquarterFactory::times(5)->create();
+        // EngineFactory::times(5)->create();
+        // CarProductionDateFactory::times(5)->create();
+
+        // ProductFactory::times(5)->create();
+        CarProductFactory::times(5)->create();
 
     }
 }
