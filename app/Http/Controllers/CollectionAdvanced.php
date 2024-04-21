@@ -87,5 +87,29 @@ class CollectionAdvanced extends Controller
         return view('advanced.collections-versus-arrays', compact('names'));
     }
 
+    public function filteringCollections(){
+        $collection = collect([
+            1, 2, 3, 4, '', 'Dary', null, false, 0, []
+        ]);
+
+        //contains() alike in_array()
+        // dd($collection->contains(3)); //true 
+        // dd($collection->contains(30)); //false
+
+        $collection = collect([
+            'name' => 'Alexander The Great',
+            'age' => 33,
+            'country' => 'Macedonia'
+        ]);
+
+        //except() alike unset()
+        // dd($collection->except('age')->toArray());
+        // dd($collection->except('age', 'country')->toArray());
+
+        //only() alike in_array() but with return
+        // dd($collection->only('age')->toArray());
+        dd($collection->only('name', 'age')->toArray());
+    }
+
 
 }
