@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // CarModelFactory::times(5)->create();
-        // HeadquarterFactory::times(5)->create();
-        // EngineFactory::times(5)->create();
+        CarModelFactory::times(5)->create();
+        HeadquarterFactory::times(5)->create();
+        EngineFactory::times(5)->create();
         CarProductionDateFactory::times(5)->create();
 
     }

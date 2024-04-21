@@ -19,7 +19,7 @@ class CarModelFactory extends Factory
     {
 
         return [
-            'model_name' => fake()->company(),
+            'model_name' => $this->faker->lastName(),
             'brand_id' => function () {
                 return Brand::factory()->create()->id;
             },
