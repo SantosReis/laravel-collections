@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class CollectionAdvanced extends Controller
 {
+
+    private $posts;
+
+    public function __construct()
+    {
+        $json = Http::get('https://www.reddit.com/r/vuejs.json')->json();
+
+        $this->posts = collect($json['data']['children']);
+    }
+
     public function index()
     {
         
@@ -160,6 +171,39 @@ class CollectionAdvanced extends Controller
         // dd($collection);
 
         return view('collections.stack-queue-filters');
+    }
+
+
+    // public function basicRedditcall(){
+    //     // return $this->posts;
+
+    //     return view('collections.filter', [
+    //         'posts' => $this->posts
+    //     ]);
+    // }
+
+    public function filter(){
+        // return $this->posts;
+        // dd($this->posts);
+
+        $post = $this->posts->filter(function($post, $key) {
+            if($post['data']['thumbnail'] == 'self' || $post['data']['thumbnail'] == 'default'){
+                return false;
+            }
+
+            // return true; // return all items
+            // return $post; // any linke
+            return Str::contains($post['data']['url'], 'reddit.com'); //redit links only
+        });
+
+        // echo '<pre>';
+        // echo $post->count();
+        // echo $post->toJson();
+        // die();
+
+        return view('collections.filter', [
+            'posts' => $post
+        ]);
     }
 
 

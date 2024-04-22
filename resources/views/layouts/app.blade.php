@@ -14,10 +14,10 @@
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+<body class="bg-gray-100 h-screen bg-gray-900 antialiased leading-none font-sans">
     <div id="app">
         @yield('content')
     </div>
