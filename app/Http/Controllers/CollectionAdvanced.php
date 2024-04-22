@@ -210,6 +210,10 @@ class CollectionAdvanced extends Controller
         // return $this->posts;
         // dd($this->posts);
 
+        // if($this->posts->contains('data.thumbnail', 'self')){
+        //     return view('collections.contains-empty');
+        // }
+
         $images = $this->posts->filter(function($post, $key) {
 
             if($post['data']['thumbnail'] === 'self' || $post['data']['thumbnail'] === 'default'){
