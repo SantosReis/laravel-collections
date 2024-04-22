@@ -29,6 +29,7 @@ Route::get('/lazy-collections/writingfile', [LazyCollectionExample::class, 'writ
 Route::get('/collections-advanced', [CollectionAdvanced::class, 'index']);
 Route::get('/collections-vs-arrays', [CollectionAdvanced::class, 'collectionsVersusArrays']);
 Route::get('/collections-filtering', [CollectionAdvanced::class, 'filteringCollections']);
+Route::get('/collections/stack-queue-filters', [CollectionAdvanced::class, 'stackQueueFilters']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {

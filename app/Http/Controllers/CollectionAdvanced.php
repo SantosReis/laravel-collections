@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CollectionAdvanced extends Controller
 {
@@ -47,7 +48,13 @@ class CollectionAdvanced extends Controller
     public function collectionsVersusArrays(){
 
         // $users = array_map('str_getcsv', file(public_path('users.csv')));
-        $users = \App\Models\User::all()->take(10000);
+        $users = \App\Models\User::limit(10000)->get();
+        // $users = \App\Models\User::take(10000)->get();
+        // $users = \App\Models\User::get();
+        // $users = DB::table('users')->limit(10000)->get();
+
+        // dd($users);
+        // die();
 
         $time_start = microtime(as_float:true);
         $names = [];
@@ -109,6 +116,50 @@ class CollectionAdvanced extends Controller
         //only() alike in_array() but with return
         // dd($collection->only('age')->toArray());
         dd($collection->only('name', 'age')->toArray());
+    }
+
+    public function stackQueueFilters(){
+        // $collection = collect([
+        //    8, 4, 3, 5, 'Dary', 'Developer', null, false, [], 2 
+        // ]);
+
+        // push(): appends an item to the end of the collection
+        // $collection->push('Laravel', [1, 2, 3]);
+        // dd($collection);
+
+        // put(): sets the given key and value in the collectio
+        // $collection->put('name', 'John Doe');
+        // $collection->put('name', 'John Doe')->put('age', 33);
+        // dd($collection);
+
+        // forget(): removes an item from the collection by its key
+        // $collection->forget(5);
+        // $collection->forget(5)->forget(1)->forget(0); //ovelap
+        // dd($collection);
+
+        // pull(): removes an item from the collection by its key
+        // but unlike forget() does not support overlap methods
+        // $removedItem = $collection->pull(5);
+        // dump($removedItem);
+        // dd($collection);
+
+        // pop(): removes and returns the last item from the collection
+        // $removedItem = $collection->pop();
+        // dump($removedItem);
+        // dd($collection);
+
+        // shift(): removes and returns the first item from the collectio
+        // $removedItem = $collection->shift();
+        // dump($removedItem);
+        // dd($collection);
+
+        // flip(): swaps the collection's keys with their corresponding values
+        // does not work with boolean, null or arrays 
+        // $collection = collect([8, 4, 3, 5, 'Dary', 'Developer', 2]);
+        // $collection->flip();
+        // dd($collection);
+
+        return view('collections.stack-queue-filters');
     }
 
 
