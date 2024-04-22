@@ -206,5 +206,28 @@ class CollectionAdvanced extends Controller
         ]);
     }
 
+    public function pluck(){
+        // return $this->posts;
+        // dd($this->posts);
+
+        $images = $this->posts->filter(function($post, $key) {
+
+            if($post['data']['thumbnail'] === 'self' || $post['data']['thumbnail'] === 'default'){
+                return false;
+            }
+            return $post;
+        })->pluck('data.thumbnail')->all();
+
+        // $images = $this->posts->pluck('data.thumbnail')->reject("self")->reject("default")->all(); //reject() instead filter()
+
+        // echo '<pre>';
+        // echo $post->count();
+        // dd($images);
+        // die();
+
+        return view('collections.pluck', [
+            'images' => $images
+        ]);
+    }
 
 }
