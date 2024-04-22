@@ -32,7 +32,7 @@ Route::get('/collections-filtering', [CollectionAdvanced::class, 'filteringColle
 Route::get('/collections/stack-queue-filters', [CollectionAdvanced::class, 'stackQueueFilters']);
 Route::get('/collections/filter', [CollectionAdvanced::class, 'filter']);
 Route::get('/collections/pluck', [CollectionAdvanced::class, 'pluck']);
-Route::get('/collections/contains', [CollectionAdvanced::class, 'contains']);
+Route::get('/collections/groupby', [CollectionAdvanced::class, 'groupby']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {

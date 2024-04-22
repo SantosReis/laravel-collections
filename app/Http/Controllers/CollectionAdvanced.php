@@ -14,8 +14,9 @@ class CollectionAdvanced extends Controller
 
     public function __construct()
     {
-        $json = Http::get('https://www.reddit.com/r/vuejs.json')->json();
-
+        // $json = Http::get('https://www.reddit.com/r/vuejs.json')->json();
+        $json = json_decode(\File::get(storage_path('vuejs.json')), true);
+        
         $this->posts = collect($json['data']['children']);
     }
 
@@ -231,6 +232,26 @@ class CollectionAdvanced extends Controller
 
         return view('collections.pluck', [
             'images' => $images
+        ]);
+    }
+
+        public function groupby(){
+        // return $this->posts;
+        // dd($this->posts);
+
+        $images = $this->posts->filter(function($post, $key) {
+            if(isset($post['data']['post_hint'])){
+                return in_array($post['data']['post_hint'], ['link', 'self']);
+            }
+        })->groupBy('data.post_hint')->toArray();
+
+        // echo '<pre>';
+        // echo $post->count();
+        // dd($images);
+        // die();
+
+        return view('collections.groupby', [
+            'posts' => $images
         ]);
     }
 
