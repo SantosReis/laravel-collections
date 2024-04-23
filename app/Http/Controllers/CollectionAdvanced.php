@@ -235,7 +235,7 @@ class CollectionAdvanced extends Controller
         ]);
     }
 
-        public function groupby(){
+    public function groupby(){
         // return $this->posts;
         // dd($this->posts);
 
@@ -252,6 +252,33 @@ class CollectionAdvanced extends Controller
 
         return view('collections.groupby', [
             'posts' => $images
+        ]);
+    }
+
+    public function sortby(){
+        // return $this->posts;
+        // dd($this->posts);
+
+        $posts= $this->posts->filter(function($post, $key) {
+            // if(isset($post['data']['post_hint'])){
+            //     return in_array($post['data']['post_hint'], ['link']);
+            // }
+
+            if($post['data']['thumbnail'] == 'self' || $post['data']['thumbnail'] == 'default'){
+                return false;
+            }
+            return true;
+            
+        })->sortBy('data.title', true)->values()->all();
+
+        // echo '<pre>';
+        // echo $posts->count();
+        // echo $posts;
+        // dd($posts);
+        // die();
+
+        return view('collections.sortby', [
+            'posts' => $posts
         ]);
     }
 
