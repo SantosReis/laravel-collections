@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class CollectionAdvanced extends Controller
@@ -350,6 +351,27 @@ class CollectionAdvanced extends Controller
 
         return view('collections.first', [
             'post' => $firstPopularPost
+        ]);
+    }
+
+    public function tap(){
+
+        $posts= $this->posts->wherein('data.post_hint', ['link', 'self'])
+            ->sortBy('data.title', true)
+            ->tap(function($collection){
+                Log::info('IDs from ' . $collection->count() . ' post:', $collection->pluck('data.id')->toArray());
+            })
+            ->values()
+            ->all();
+
+        // echo '<pre>';
+        // echo $posts->count();
+        // echo $posts;
+        // dd($posts);
+        // die();
+
+        return view('collections.tap', [
+            'posts' => $posts
         ]);
     }
 
