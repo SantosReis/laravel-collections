@@ -269,7 +269,7 @@ class CollectionAdvanced extends Controller
             }
             return true;
             
-        })->sortBy('data.title', true)->values()->all();
+        })->sortBy('data.title', true)->values();
 
         // echo '<pre>';
         // echo $posts->count();
@@ -323,6 +323,16 @@ class CollectionAdvanced extends Controller
         $posts = $this->posts->wherein('data.post_hint', ['link', 'self'])->groupBy('data.post_hint')->toArray();
 
         return view('collections.wherein', [
+            'posts' => $posts
+        ]);
+    }
+
+    // partition() or groupby() alernative
+    public function chunk(){
+
+        $posts = $this->posts->chunk(2);
+
+        return view('collections.chunk', [
             'posts' => $posts
         ]);
     }
