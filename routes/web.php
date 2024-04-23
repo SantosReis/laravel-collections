@@ -36,6 +36,7 @@ Route::get('/collections/groupby', [CollectionAdvanced::class, 'groupby']);
 Route::get('/collections/sortby', [CollectionAdvanced::class, 'sortby']);
 Route::get('/collections/partition', [CollectionAdvanced::class, 'partition']);
 Route::get('/collections/reject', [CollectionAdvanced::class, 'reject']);
+Route::get('/collections/wherein', [CollectionAdvanced::class, 'wherein']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {

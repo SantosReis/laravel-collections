@@ -317,4 +317,14 @@ class CollectionAdvanced extends Controller
         ]);
     }
 
+    //contains() alternative but returning an collection
+    public function wherein(){
+
+        $posts = $this->posts->wherein('data.post_hint', ['link', 'self'])->groupBy('data.post_hint')->toArray();
+
+        return view('collections.wherein', [
+            'posts' => $posts
+        ]);
+    }
+
 }
