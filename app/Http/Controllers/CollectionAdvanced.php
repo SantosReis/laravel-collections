@@ -317,7 +317,8 @@ class CollectionAdvanced extends Controller
         ]);
     }
 
-    //contains() alternative but returning an collection
+    //contains() alternative but boolean return
+    //first() alternative but returning just one row
     public function wherein(){
 
         $posts = $this->posts->wherein('data.post_hint', ['link', 'self'])->groupBy('data.post_hint')->toArray();
@@ -334,6 +335,21 @@ class CollectionAdvanced extends Controller
 
         return view('collections.chunk', [
             'posts' => $posts
+        ]);
+    }
+
+    //contains() alternative but boolean return
+    //wherein() alternative but returning in many rows as you with
+    public function first(){
+
+        // $firstPopularPost = $this->posts->first(function($post, $key){
+        //     return $post['data']['ups'] > 10;
+        // });
+
+        $firstPopularPost = $this->posts->firstWhere('data.ups', '>', 10);
+
+        return view('collections.first', [
+            'post' => $firstPopularPost
         ]);
     }
 

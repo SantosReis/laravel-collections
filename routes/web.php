@@ -38,6 +38,7 @@ Route::get('/collections/partition', [CollectionAdvanced::class, 'partition']);
 Route::get('/collections/reject', [CollectionAdvanced::class, 'reject']);
 Route::get('/collections/wherein', [CollectionAdvanced::class, 'wherein']);
 Route::get('/collections/chunk', [CollectionAdvanced::class, 'chunk']);
+Route::get('/collections/first', [CollectionAdvanced::class, 'first']);
 
 Route::get('generator-iterator', function() {
     function happyFunction($strings) {
