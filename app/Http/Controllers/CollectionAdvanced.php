@@ -282,4 +282,25 @@ class CollectionAdvanced extends Controller
         ]);
     }
 
+    public function partition(){
+        // return $this->posts;
+        // dd($this->posts);
+
+
+        list($popularPosts, $regularPosts) = $posts= $this->posts->partition(function($post) {
+            return $post['data']['ups'] > 10;
+        });
+
+        // echo '<pre>';
+        // echo $posts->count();
+        // echo $posts;
+        // dd($posts);
+        // die();
+
+        return view('collections.partition', [
+            'popularPosts' => $popularPosts->sortByDesc('data.ups'),
+            'regularPosts' => $regularPosts->sortByDesc('data.ups')
+        ]);
+    }
+
 }
