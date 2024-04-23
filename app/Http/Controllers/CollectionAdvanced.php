@@ -287,7 +287,7 @@ class CollectionAdvanced extends Controller
         // dd($this->posts);
 
 
-        list($popularPosts, $regularPosts) = $posts= $this->posts->partition(function($post) {
+        list($popularPosts, $regularPosts) = $this->posts->partition(function($post) {
             return $post['data']['ups'] > 10;
         });
 
@@ -300,6 +300,20 @@ class CollectionAdvanced extends Controller
         return view('collections.partition', [
             'popularPosts' => $popularPosts->sortByDesc('data.ups'),
             'regularPosts' => $regularPosts->sortByDesc('data.ups')
+        ]);
+    }
+
+    // pull(): removes an item from the collection by its key but unlike forget() does not support overlap methods
+    // forget(): removes an item from the collection by its key
+    // reject(): filters the collection using the given closure to remove from the resulting collection
+    public function reject(){
+
+        $posts = $this->posts->reject(function($post) {
+            return $post['data']['ups'] < 10;
+        })->sortByDesc('data.ups');
+
+        return view('collections.reject', [
+            'posts' => $posts,
         ]);
     }
 
